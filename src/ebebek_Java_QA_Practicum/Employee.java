@@ -42,62 +42,70 @@ public class Employee {
 	}
 		
 	public double tax() {
-		if (this.salary > 1000)
+		final int salaryLimit = 1000;
+		final double taxe = 0.03;
+		if (this.salary > salaryLimit)
 		{
-			return this.salary*0.03;		
+			return this.salary*taxe;		
 		}
 		return 0.0;
 	}
 			
-	public double bonus() {
+	private double bonus() {
 		double bonus = 0;
-		if (this.workHours > 40)
+		final int weeklyWorkingHours = 40;
+		final int extraMoney = 30;
+		final int monthly = 4;
+		if (this.workHours > weeklyWorkingHours)
 		{
-			bonus = ((this.workHours-40)*30)*4;
+			bonus = ((this.workHours-weeklyWorkingHours)*extraMoney)*monthly;
 		}
 		return bonus;
 	}
 	
-	public double raiseSalary() {
+	private double raiseSalary() {
 		int thisYear = 2021;
 		double raiseSalary = 0;
+		final double raiseAmount1 = 0.05;
+		final double raiseAmount2 = 0.10; 
+		final double raiseAmount3 = 0.15; 
 		if (thisYear - this.hireYear < 10 )
 		{
-			raiseSalary = bonus() + this.salary*0.05 - tax();			
+			raiseSalary = bonus() + this.salary*raiseAmount1 - tax();			
 		}	
 		else if (thisYear - this.hireYear > 9 && thisYear - this.hireYear < 20)
 		{
-			raiseSalary = bonus() + this.salary*0.10 - tax();
+			raiseSalary = bonus() + this.salary*raiseAmount2 - tax();
 		}
 		else if (thisYear - this.hireYear > 19)
 		{
-			raiseSalary = bonus() + this.salary*0.15 - tax();
+			raiseSalary = bonus() + this.salary*raiseAmount3 - tax();
 		}	
 		return raiseSalary;		
 	}
 	
-	public double totalSalary() {
+	private double totalSalary() {
 		double totalSalary = 0;
-		totalSalary = this.salary + bonus();         //  Expect rise.
+		totalSalary = this.salary + bonus();        
 		return totalSalary;                         
 	}
 	
 	
-	public double netProfit() {
+	private double netProfit() {
 		double netProfit = 0;
-		netProfit = this.salary + bonus() - tax();   //  Expect rise.
+		netProfit = this.salary + bonus() - tax();   
 		return netProfit;
 	}
 	
-	public double totalSalaryy() {
-		double totalSalaryy = 0;
-		totalSalaryy = this.salary + raiseSalary();  // with rise.
-		return totalSalaryy;
+	private double total_Salary() {
+		double total_Salary = 0;
+		total_Salary = this.salary + raiseSalary();  
+		return total_Salary;
 	}
 	
 	public String toString() {
 		return this.name + "'s " + "Salary: " + this.salary + " Work Hours:" + this.workHours + " Hire Year:" + this.hireYear + " Tax:" + tax() + " Bonus:" + bonus() + " Raise Salary: " + raiseSalary() +
-		" Total Salary: " + totalSalary() + " Salary with tax and bonus: " + netProfit() + " Total Salary with rise, bonus and tax: " + totalSalaryy();	
+		" Total Salary: " + totalSalary() + " Salary with tax and bonus: " + netProfit() + " Total Salary with rise, bonus and tax: " + total_Salary();	
 	}
 		
 }
