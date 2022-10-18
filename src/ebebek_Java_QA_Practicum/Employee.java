@@ -41,7 +41,7 @@ public class Employee {
 		this.hireYear = hireYear;
 	}
 		
-	public double tax() {
+	private double tax() {
 		final int salaryLimit = 1000;
 		final double taxe = 0.03;
 		if (this.salary > salaryLimit)
